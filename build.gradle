@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'idea'
+    //id 'net.ltgt.apt' version '0.15'
+}
+
+group 'com.demo'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+
+//    maven {
+//        url 'https://repo.spring.io/snapshot/'
+//    }
+}
+
+dependencies {
+    /*
+    compileOnly — for dependencies that are necessary to compile your production code but shouldn’t be part of the runtime classpath
+
+    implementation (supersedes compile) — used for compilation and runtime
+
+    runtimeOnly (supersedes runtime) — only used at runtime, not for compilation
+
+    testCompileOnly — same as compileOnly except it’s for the tests
+
+    testImplementation — test equivalent of implementation
+
+    testRuntimeOnly — test equivalent of runtimeOnly
+    */
+
+    compileOnly 'org.projectlombok:lombok:1.18.10'
+
+    //testCompile
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.5'
+    //compileOnly group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.5'
+    //compileOnly group: 'org.slf4j', name: 'slf4j-api', version: '1.7.5'
+
+    //testCompileOnly group: 'junit', name: 'junit', version: '4.12'
+
+    annotationProcessor 'org.projectlombok:lombok:1.18.10'
+
+}
