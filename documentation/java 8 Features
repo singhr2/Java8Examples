@@ -1,0 +1,60 @@
+1. Functional Interfaces (@FunctionalInterface annotation)
+------------------------------------------------------------
+  * Only 1 Single abstract method (SAM)
+  * 0..* default and/or static methods
+  
+  Note: It is different from 'Marker Interface' which don't have any method at all
+
+
+2. Functional Interfaces provided by Java 8
+------------------------------------------------------------
+* Function
+  public <R> apply(T parameter);
+
+* Supplier
+  
+* Consumer
+  
+* Predicate
+  boolean test(T t);
+  
+  e.g., Predicate<String> startsWithA = (text) -> text.startsWith("A");
+
+
+2. Lambda 
+------------------------------------------------------------
+  * Annonymous function - don't belong to any class, can be passed around methods
+  * Lambda Expressions
+  * Lambda Functions
+  >>
+    // Test online using https://www.compilejava.net/
+    
+    @FunctionalInterface
+    interface TestFIa{
+      void printMessage(String str);
+    }
+
+    @FunctionalInterface
+    interface TestFIb{
+        void execute(String s1);
+    }
+
+    public class HelloWorld{
+      public static void main(String... args){
+        System.out.println("Welcome");
+        
+        //Lambda Function
+        TestFIa fia = (s) -> {
+         System.out.println(s);
+        };
+
+        //Lambda Expression
+        TestFIb fib = System.out::println;
+
+        //Invoke
+        fia.printMessage("Hello World using Lambda Function");
+        fib.execute("Hello World using Lambda Expression");
+        }
+    }
+
+
