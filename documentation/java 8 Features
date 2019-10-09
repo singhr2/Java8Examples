@@ -8,20 +8,29 @@
 
 2. Functional Interfaces provided by Java 8
 ------------------------------------------------------------
-* Function
-  public <R> apply(T parameter);
-
 * Supplier
   
 * Consumer
+
+* Function
+  public <R> apply(T parameter);
+
+  >> Function Composition: compose(), andThen()
+  
   
 * Predicate
   boolean test(T t);
   
   e.g., Predicate<String> startsWithA = (text) -> text.startsWith("A");
+ 
+  >> Predicate Composition: and(), or() 
+  //example credit: http://tutorials.jenkov.com/java-functional-programming/functional-composition.html#predicate-composition
+  Predicate<String> startsWithA = (text) -> text.startsWith("A");
+  Predicate<String> endsWithX   = (text) -> text.endsWith("x");
+  Predicate<String> composedUsingAnd = startsWithA.and(endsWithX);
+  Predicate<String> composedUsingOr = startsWithA.or(endsWithX);
 
-
-2. Lambda 
+3. Lambda 
 ------------------------------------------------------------
   * Annonymous function - don't belong to any class, can be passed around methods
   * Lambda Expressions
