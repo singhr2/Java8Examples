@@ -66,4 +66,21 @@
         }
     }
 
+----------------------------------------------
+[4] Default(aka Defender) and Static methods in Interfaces
+----------------------------------------------
+* we CANNOT make Default method static in Java
+     static default void find(){...}
+* An interface can contain more than one Default methods
+* Default method cannot override any method from java.lang.Object
+* static method of interface can't be overriden in implementing classes (to be verified)
+
+----------------------------------------------
+[5] Streams
+----------------------------------------------
+* stream() - sequential stream
+* parallelStream()
+
+
+
 
