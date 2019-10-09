@@ -1,4 +1,4 @@
-1. Functional Interfaces (@FunctionalInterface annotation)
+1. Functional Interfaces (@FunctionalInterface annotation) / Single Abstract Method interfaces (SAM Interfaces)
 ------------------------------------------------------------
   * Only 1 Single abstract method (SAM)
   * 0..* default and/or static methods
@@ -81,6 +81,28 @@
 * stream() - sequential stream
 * parallelStream()
 
+Operations:
+* Intermediate operations : 
+   >> always return a new stream
+   >> don't process the elements until a terminal operation is invoked, in other words, they're lazy.
+   >>>> stateless and stateful operations.
+     Stateless operations :
+     retain no state from previously elements when processing a new element 
+     so each can be processed independently of operations on other elements.
+
+     Stateful operations:
+     such as distinct and sorted, may incorporate state from previously seen elements when processing new elements.
+  
+  >>>> 
+  * map():
+  * filter():
+  * limit():
+  * sorted():
+  
+  
+   
+* Terminal operations
+   >> 
 
 
 
