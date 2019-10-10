@@ -1,26 +1,34 @@
+Reference: 
+   * https://www.oracle.com/technetwork/java/javase/8-whats-new-2157071.html
+
+
+
 [1] Functional Interfaces (@FunctionalInterface annotation) / 
    Single Abstract Method interfaces (SAM Interfaces)
 ------------------------------------------------------------
-  * Only 1 Single abstract method (SAM)
-  * 0..* default and/or static methods
+* A functional interface is simply an interface with only one non-default, non-static method. 
+* All interfaces that satisfy that definition can be implemented through a lambda in Java 8.
+* Only 1 Single abstract method (SAM)
+* 0..* default and/or static methods
   
   Note: It is different from 'Marker Interface' which don't have any method at all
 
 ---------------------------------------------
-[2] Functional Interfaces provided by Java 8
+[2] Functional Interfaces provided by Java 8 in java.util.function package
 ---------------------------------------------
 * Supplier
+  >> T get()
   
 * Consumer
-
+  >> void accept(T t)
+  
 * Function
-  public <R> apply(T parameter);
+  >> public <R> apply(T parameter);
 
   >> Function Composition: compose(), andThen()
-  
-  
+    
 * Predicate
-  boolean test(T t);
+  >> boolean test(T t);
   
   e.g., Predicate<String> startsWithA = (text) -> text.startsWith("A");
  
@@ -69,16 +77,41 @@
     }
 
 ----------------------------------------------
-[4] Default(aka Defender) and Static methods in Interfaces
+[4] Interface Default(aka Defender) and Static methods
 ----------------------------------------------
 * we CANNOT make Default method static in Java
      static default void find(){...}
-* An interface can contain more than one Default methods
+* An interface can contain more than one Default / static methods
 * Default method cannot override any method from java.lang.Object
-* static method of interface can't be overriden in implementing classes (to be verified)
+* Defafult methods are accessible through the instance of the implementing class and can be overridden.
+* static method of interface can't be overriden in implementing classes
+* The static method is available only through and inside of an interface. 
+  It can't be overridden by an implementing class.
+  
+         MyInterface.myStaticMethod();
+  
+----------------------------------------------
+[] Method References
+----------------------------------------------
+* special form of the lambda expression
+* Method reference can be used as a shorter and more readable alternative 
+  for a lambda expression 
+  which only calls an existing method. 
+  
+* Reference to a Static Method { ContainingClass::methodName } 
+   	e.g., boolean isAdminUser = listOfUsers.stream().anyMatch(User::isAdmin); //isAdmin is static method 
+
+* Reference to an Instance Method { containingInstance::methodName }
+   User user = new User();
+   boolean isActiveUser = listOfUsers.stream().anyMatch(user::isActive);
+
+* Reference to an 'Instance method reference' of an arbitrary object of a particular type { ClassName::someInstanceMethod }
+
+*  Reference to a Constructor { ClassName::new }
+
 
 ----------------------------------------------
-[5] Streams
+[5] Stream API { java.util.stream }
 ----------------------------------------------
 * stream() - sequential stream
 * parallelStream()
