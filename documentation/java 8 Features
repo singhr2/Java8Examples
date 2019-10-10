@@ -223,3 +223,6 @@ Operations:
 [8] Date and Time API {java.time package}
 ----------------------------------------------
 * see example
+
+* java.util.Date has toInstant() method to return java.time.Instant;
+  to convert existing Date and Calendar instance to new Date Time API
