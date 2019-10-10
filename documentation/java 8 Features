@@ -101,11 +101,15 @@ Reference:
 * Reference to a Static Method { ContainingClass::methodName } 
    	e.g., boolean isAdminUser = listOfUsers.stream().anyMatch(User::isAdmin); //isAdmin is static method 
 
-* Reference to an Instance Method { containingInstance::methodName }
+* Reference to an Instance methods of particular objects { containingInstance::methodName }
    User user = new User();
    boolean isActiveUser = listOfUsers.stream().anyMatch(user::isActive);
 
-* Reference to an 'Instance method reference' of an arbitrary object of a particular type { ClassName::someInstanceMethod }
+* Instance methods of an arbitrary object of a particular type { ClassName::someInstanceMethod } 
+   ~ Reference to an 'Instance method reference' of an arbitrary object of a particular type 
+   
+      List<Integer> numbers = Arrays.asList(5, 3, 50, 24, 40, 2, 9, 18);
+      numbers.stream().sorted(Integer::compare);
 
 *  Reference to a Constructor { ClassName::new }
 
