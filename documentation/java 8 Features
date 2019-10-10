@@ -1,7 +1,5 @@
-Reference: 
-   * https://www.oracle.com/technetwork/java/javase/8-whats-new-2157071.html
-
-
+<NB> Try examples online at https://www.compilejava.net/
+Or try with JShell (included in JDK 9)
 
 [1] Functional Interfaces (@FunctionalInterface annotation) / 
    Single Abstract Method interfaces (SAM Interfaces)
@@ -91,7 +89,7 @@ Reference:
          MyInterface.myStaticMethod();
   
 ----------------------------------------------
-[] Method References
+[5] Method References
 ----------------------------------------------
 * special form of the lambda expression
 * Method reference can be used as a shorter and more readable alternative 
@@ -115,7 +113,7 @@ Reference:
 
 
 ----------------------------------------------
-[5] Stream API { java.util.stream }
+[6] Stream API { java.util.stream }
 ----------------------------------------------
 * stream() - sequential stream
 * parallelStream()
@@ -150,7 +148,7 @@ Operations:
  
  
 ----------------------------------------------
-[6] java.util.Optional<T>
+[7] java.util.Optional<T>
 ----------------------------------------------
 <!> @SeeAlso https://dzone.com/articles/using-optional-correctly-is-not-optional
 
@@ -185,9 +183,6 @@ Operations:
 * Avoid complex or state changing calculations in orElse. Use orElseGet for that
 
 * Any expression you put inside orElse() is always evaluated (eagerly). 
-
-  
-  
   
 * Methods:
   >> Optional.isPresent()
@@ -224,4 +219,7 @@ Operations:
      Optional.ofNullable(null) will result in an Optional.empty.
      
 
-
+----------------------------------------------
+[8] Date and Time API {java.time package}
+----------------------------------------------
+* see example
