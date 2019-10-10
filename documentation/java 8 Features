@@ -1,13 +1,14 @@
-1. Functional Interfaces (@FunctionalInterface annotation) / Single Abstract Method interfaces (SAM Interfaces)
+[1] Functional Interfaces (@FunctionalInterface annotation) / 
+   Single Abstract Method interfaces (SAM Interfaces)
 ------------------------------------------------------------
   * Only 1 Single abstract method (SAM)
   * 0..* default and/or static methods
   
   Note: It is different from 'Marker Interface' which don't have any method at all
 
-
-2. Functional Interfaces provided by Java 8
-------------------------------------------------------------
+---------------------------------------------
+[2] Functional Interfaces provided by Java 8
+---------------------------------------------
 * Supplier
   
 * Consumer
@@ -30,8 +31,9 @@
   Predicate<String> composedUsingAnd = startsWithA.and(endsWithX);
   Predicate<String> composedUsingOr = startsWithA.or(endsWithX);
 
-3. Lambda 
-------------------------------------------------------------
+---------------------------------------------
+[3] Lambda 
+---------------------------------------------
   * Annonymous function - don't belong to any class, can be passed around methods
   * Lambda Expressions
   * Lambda Functions
@@ -102,7 +104,87 @@ Operations:
   
    
 * Terminal operations
-   >> 
+   >> forEach()
+   >> count()
+   >> collect()
+   >>toArray()
+   etc.
+ 
+ 
+ 
+----------------------------------------------
+[6] java.util.Optional<T>
+----------------------------------------------
+<!> @SeeAlso https://dzone.com/articles/using-optional-correctly-is-not-optional
 
+* Optional is intended to provide a limited mechanism for "library method return types" 
+  where there needed to be a clear way to represent “no result," and 
+  using null for such was overwhelmingly likely to cause errors.
+           - "Brian Goetz, Java’s language architect"
+* to express the potential absence of a value with a data-type  
+
+<!!!>
+* Use Optional to communicate an intended possible absence of a value (e.g. the return value of a function).
+
+* Avoid having Optionals as method argument
+
+* Avoid Optional Types in Object Fields, they are not serializable
+  WRONG ::  private Optional<Engine> engine;
+  
+* Do Not Use Optional in Constructors Arguments
+
+* Do Not Use Optional in Setters Arguments
+  private Optional<String> postcode; // optional field, thus may be null
+
+* Avoid Collection of Optionals
+  WRONG:: private List<Optional<Wheel>> wheels;
+
+* Never Assign Null to an Optional Variable
+   WRONG: Optional<Cart> emptyCart = null;
+   CORRECT: Optional<Cart> emptyCart = Optional.empty();
+
+* Avoid Optional::isPresent followed by Optional::get
+
+* Avoid complex or state changing calculations in orElse. Use orElseGet for that
+
+* Any expression you put inside orElse() is always evaluated (eagerly). 
+
+  
+  
+  
+* Methods:
+  >> Optional.isPresent()
+     Better to use ifPresent(statement-to-execute);
+     
+  >> Optional.isEmpty() : Since Java 11 { opposite of isPresent() }
+  
+  >> Optional.get()
+     only return a value if the wrapped object is not null, 
+     otherwise, it throws java.util.NoSuchElementException
+     
+  >> Optional.orElse()  <-- eager : see above notes ; Used to pass Default Value
+      String nullName = null;
+      String name = Optional.ofNullable(nullName).orElse("john");
+      
+  >> Optional.orElseGet(Supplier)  <-- better option than orElse() <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+      String nullName = null;
+      String name = Optional.ofNullable(nullName).orElseGet(() -> "john");
+      
+  >> orElseThrow() : Instead of returning a default value when the wrapped value is not present, it throws an exception
+     String nullName = null;
+     String name = Optional.ofNullable(nullName).orElseThrow( IllegalArgumentException::new );
+     
+     In Java 10, for  java.util.NoSuchElementException, use  orElseThrow()
+      
+  >> Optional.ofNullable(valueOrNull).ifPresentOrElse( this::doSomethingWithPresentValue, this::doSomethingElse);
+  
+* Creating Optional:
+  >> Optional.empty() : 
+  >> Optional.of(T value) : <-- T can't be null
+  >> Optional.ofNullable(T value) : <- in case we expect some null values, will returns an empty Optional object it T is null
+     
+     Optional.of(null)will throwNullPointerException, while 
+     Optional.ofNullable(null) will result in an Optional.empty.
+     
 
 
